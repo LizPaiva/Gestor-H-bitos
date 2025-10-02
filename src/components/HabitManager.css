@@ -1,0 +1,302 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #fffdfb;
+}
+
+
+.habit-container {
+  max-width: 420px;
+  width: 100%;
+  margin-top: 20px;
+  background: #fffaf4;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 25px;
+  text-align: center;
+}
+
+
+
+.title {
+  color: #ff7043;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ffd6a5;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #ff7043;
+}
+
+button {
+  background: #ff7043;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #ff5722;
+}
+
+.habit-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.habit-item {
+  background: #ffe0b2;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+
+.habit-item:hover {
+  transform: scale(1.02);
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: flex-start;
+  min-height: 100vh;
+  text-align: center;
+  background-color: #fffdfb;
+  padding: 30px 20px;
+  font-family: "Poppins", sans-serif;
+}
+
+.habit-container {
+  background: #fff9f0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(255, 165, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  margin: 1.5rem auto;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.habit-container:hover {
+  transform: translateY(-4px);
+}
+
+.title {
+  color: #ff7b00;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 2px solid #ffb84d;
+  border-radius: 8px;
+}
+
+.input-group button {
+  background: #ffa500;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background: #ff7b00;
+}
+
+.habit-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.habit-item {
+  background: #fff3e0;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.habit-item span {
+  cursor: pointer;
+  flex: 1;
+  text-align: left;
+}
+
+.habit-item.completed span {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+  transform: scale(0.98);
+  transition: all 0.3s ease;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.habit-container {
+  background: #fff9f0;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 16px rgba(255, 165, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  margin: 1.5rem auto;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.habit-container:hover {
+  transform: translateY(-4px);
+}
+
+.title {
+  color: #ff7b00;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 2px solid #ffb84d;
+  border-radius: 8px;
+}
+
+.input-group button {
+  background: #ffa500;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.input-group button:hover {
+  background: #ff7b00;
+}
+
+.habit-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.habit-item {
+  background: #fff3e0;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.habit-item:hover {
+  background: #ffe4c4;
+}
+
+.habit-item.completed {
+  background: #e0ffe0;
+  transform: scale(0.98);
+  opacity: 0.9;
+  transition: all 0.4s ease;
+}
+
+.habit-item.completed .habit-text {
+  text-decoration: line-through;
+  color: #555;
+  opacity: 0.8;
+}
+
+.habit-text {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex: 1;
+  text-align: left;
+}
+
+.checkmark {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
