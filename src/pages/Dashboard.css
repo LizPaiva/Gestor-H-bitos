@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* antes estaba centrado, causaba desplazamiento */
+  justify-content: flex-start;
   background: linear-gradient(180deg, #fff7e6, #ffe7b3);
   min-height: 100vh;
   padding: 30px;
-  overflow-y: auto; /* permite hacer scroll si es necesario */
+  overflow-y: auto;
 }
 
 .dashboard-header {
@@ -37,24 +37,48 @@
 
 .dashboard-content {
   display: flex;
-  flex-direction: column; /* una debajo de otra */
+  flex-direction: column;
   align-items: center;
-  gap: 20px; /* espacio entre progreso y gestor */
+  gap: 20px;
   width: 100%;
   max-width: 800px;
 }
 
 .stats,
 .habits {
-  background-color: #fffaf0;
-  border-radius: 20px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   width: 100%;
+  margin-top: 20px;
 }
+
 
 .stats h2 {
   color: #fe8535;
   margin-bottom: 15px;
   text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  justify-content: center; /* Centra verticalmente si hay altura suficiente */
+  min-height: 100vh;
+  background-color: #fdfdfd;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  text-align: center; /* Asegura centrado del texto */
+}
+
+.container {
+  max-width: 400px;
+  background: #fff8e1;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.progress-container {
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 500;
 }

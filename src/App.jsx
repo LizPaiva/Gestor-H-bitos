@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import HabitManager from "./components/HabitManager";
-import Dashboard from "./components/Dashboard"; 
+import Dashboard from "./pages/Dashboard"; 
 import "./App.css";
 
 function App() {
@@ -43,15 +42,7 @@ function App() {
           <button onClick={guardarNombre}>Guardar</button>
         </div>
       ) : (
-        <div className="dashboard-container">
-          <h1>👋 Hola, {nombre}</h1>
-          <p>¡Gestiona tus hábitos y alcanza tus metas! 💪</p>
-          <button className="logout-btn" onClick={cerrarSesion}>
-            Cerrar sesión 🔒
-          </button>
-
-          <Dashboard /> {/* 👈 aquí se muestra el nuevo panel */}
-        </div>
+        <Dashboard nombre={nombre} cerrarSesion={cerrarSesion} />
       )}
     </div>
   );

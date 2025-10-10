@@ -1,69 +1,56 @@
-import "./HabitManager.css";
-import React, { useState, useEffect } from "react";
+function HabitManager({ setHabitos }) {
+  const [habitos, setListaHabitos] = useState(() => {
+    const guardados = localStorage.getItem("habitos");
+    return guardados ? JSON.parse(guardados) : [];
+  });
+  const [nuevoHabito, setNuevoHabito] = useState("");
 
-function HabitManager() {
-  const [habito, setHabito] = useState("");
-  const [habitos, setHabitos] = useState([]);
-
-  // Cargar hábitos guardados
-  useEffect(() => {
-    const habitosGuardados = JSON.parse(localStorage.getItem("habitos")) || [];
-    setHabitos(habitosGuardados);
-  }, []);
-
-  // Guardar cambios
   useEffect(() => {
     localStorage.setItem("habitos", JSON.stringify(habitos));
+    setHabitos(habitos); // 🔥 enviamos los hábitos al Dashboard
   }, [habitos]);
 
   const agregarHabito = () => {
-    if (habito.trim() !== "") {
-      const nuevoHabito = { texto: habito, completado: false };
-      setHabitos([...habitos, nuevoHabito]);
-      setHabito("");
-    }
+    if (nuevoHabito.trim() === "") return;
+    const nuevo = { id: Date.now(), texto: nuevoHabito, completed: false };
+    setListaHabitos([...habitos, nuevo]);
+    setNuevoHabito("");
   };
 
-  const alternarCompletado = (index) => {
-    const nuevosHabitos = [...habitos];
-    nuevosHabitos[index].completado = !nuevosHabitos[index].completado;
-    setHabitos(nuevosHabitos);
+  const toggleCompleto = (id) => {
+    setListaHabitos(
+      habitos.map((h) =>
+        h.id === id ? { ...h, completed: !h.completed } : h
+      )
+    );
   };
 
-  const eliminarHabito = (index) => {
-    const nuevosHabitos = habitos.filter((_, i) => i !== index);
-    setHabitos(nuevosHabitos);
+  const eliminarHabito = (id) => {
+    setListaHabitos(habitos.filter((h) => h.id !== id));
   };
 
   return (
     <div className="habit-container">
-      <h2 className="title">✨ Gestor de Hábitos ✨</h2>
-
+      <h2 className="title">Gestor de Hábitos</h2>
       <div className="input-group">
         <input
           type="text"
-          placeholder="Escribe un nuevo hábito..."
-          value={habito}
-          onChange={(e) => setHabito(e.target.value)}
+          placeholder="Nuevo hábito..."
+          value={nuevoHabito}
+          onChange={(e) => setNuevoHabito(e.target.value)}
         />
         <button onClick={agregarHabito}>Agregar</button>
       </div>
 
       <ul className="habit-list">
-        {habitos.map((item, index) => (
+        {habitos.map((habito) => (
           <li
-            key={index}
-            className={`habit-item ${item.completado ? "completed" : ""}`}
-            onClick={() => alternarCompletado(index)}
+            key={habito.id}
+            className={`habit-item ${habito.completed ? "completed" : ""}`}
+            onClick={() => toggleCompleto(habito.id)}
           >
-            <span className="habit-text">
-              {item.completado && <span className="checkmark">✅</span>}
-              {item.texto}
-            </span>
-            <button className="delete-btn" onClick={(e) => {
-              e.stopPropagation();
-              eliminarHabito(index);
-            }}>
+            <span>{habito.texto}</span>
+            <button className="delete-btn" onClick={() => eliminarHabito(habito.id)}>
               ❌
             </button>
           </li>
@@ -72,5 +59,3 @@ function HabitManager() {
     </div>
   );
 }
-
-export default HabitManager;
