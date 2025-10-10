@@ -1,35 +1,33 @@
+import React from "react";
 import HabitManager from "../components/HabitManager";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import "./Dashboard.css";
 
-function Dashboard() {
-  const [usuario, setUsuario] = useState("");
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const nombreGuardado = localStorage.getItem("usuario");
-    if (nombreGuardado) {
-      setUsuario(nombreGuardado);
-    } else {
-      // Si no hay usuario, volver al login
-      navigate("/");
-    }
-  }, [navigate]);
-
-  const cerrarSesion = () => {
-    localStorage.removeItem("usuario");
-    navigate("/");
-  };
-
+function Dashboard({ nombre, cerrarSesion }) {
   return (
-    <div className="dashboard-container">
-  <h2>👋 Hola, {usuario}</h2>
-  <p>Bienvenido a tu Gestor de Hábitos</p>
+    <div className="dashboard">
+      <header className="dashboard-header">
+        <h1>👋 Hola, {nombre}</h1>
+        <p>¡Gestiona tus hábitos y alcanza tus metas! 💪</p>
+        <button className="logout-btn" onClick={cerrarSesion}>
+          Cerrar sesión 🔒
+        </button>
+      </header>
 
-  <HabitManager />  {/* Aquí aparece tu gestor */}
-  
-  <button onClick={cerrarSesion}>Cerrar sesión</button>
-</div>
+      <main className="dashboard-content">
+        <section className="stats">
+          <h2>📊 Tu Progreso</h2>
+          <p>Total de Hábitos: 2</p>
+          <p>Completados: 1</p>
+          <p>Progreso: 50%</p>
+        </section>
+
+      <section className="habits">
+  <h2>Gestor de Hábitos cargando...</h2>
+  <HabitManager />
+</section>
+
+      </main>
+    </div>
   );
 }
 

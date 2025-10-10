@@ -1,76 +1,60 @@
 import { useState, useEffect } from "react";
+import HabitManager from "./components/HabitManager";
+import Dashboard from "./components/Dashboard"; 
+import "./App.css";
 
 function App() {
-  const [habitos, setHabitos] = useState([]);
-  const [nuevoHabito, setNuevoHabito] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [nombreGuardado, setNombreGuardado] = useState(false);
 
-  // Cargar hábitos guardados al inicio
   useEffect(() => {
-    const habitosGuardados = localStorage.getItem("habitos");
-    if (habitosGuardados) {
-      setHabitos(JSON.parse(habitosGuardados));
+    const nombreEnStorage = localStorage.getItem("nombre");
+    if (nombreEnStorage) {
+      setNombre(nombreEnStorage);
+      setNombreGuardado(true);
     }
   }, []);
 
-  // Guardar hábitos cada vez que cambian
-  useEffect(() => {
-    localStorage.setItem("habitos", JSON.stringify(habitos));
-  }, [habitos]);
-
-  const agregarHabito = () => {
-    if (nuevoHabito.trim() !== "") {
-      setHabitos([
-        ...habitos,
-        { id: Date.now(), texto: nuevoHabito, completado: false },
-      ]);
-      setNuevoHabito("");
+  const guardarNombre = () => {
+    if (nombre.trim() !== "") {
+      localStorage.setItem("nombre", nombre);
+      setNombreGuardado(true);
     }
   };
 
-  const eliminarHabito = (id) => {
-    setHabitos(habitos.filter((habito) => habito.id !== id));
-  };
-
-  const toggleCompletado = (id) => {
-    setHabitos(
-      habitos.map((habito) =>
-        habito.id === id ? { ...habito, completado: !habito.completado } : habito
-      )
-    );
+  const cerrarSesion = () => {
+    localStorage.removeItem("nombre");
+    setNombre("");
+    setNombreGuardado(false);
   };
 
   return (
     <div className="app-container">
-      <h1>Gestor de Hábitos</h1>
+      {!nombreGuardado ? (
+        <div className="login-container">
+          <h1>👋 ¡Hola!</h1>
+          <p>Escribe tu nombre para empezar:</p>
+          <input
+            type="text"
+            value={nombre}
+            onChange={(e) => setNombre(e.target.value)}
+            placeholder="Tu nombre..."
+          />
+          <button onClick={guardarNombre}>Guardar</button>
+        </div>
+      ) : (
+        <div className="dashboard-container">
+          <h1>👋 Hola, {nombre}</h1>
+          <p>¡Gestiona tus hábitos y alcanza tus metas! 💪</p>
+          <button className="logout-btn" onClick={cerrarSesion}>
+            Cerrar sesión 🔒
+          </button>
 
-      <input
-        type="text"
-        value={nuevoHabito}
-        onChange={(e) => setNuevoHabito(e.target.value)}
-        placeholder="Escribe un hábito..."
-      />
-      <button onClick={agregarHabito}>Agregar</button>
-
-      <ul>
-        {habitos.map((habito) => (
-          <li key={habito.id}>
-            <input
-              type="checkbox"
-              checked={habito.completado}
-              onChange={() => toggleCompletado(habito.id)}
-            />
-            <span style={{ textDecoration: habito.completado ? "line-through" : "none" }}>
-              {habito.texto}
-            </span>
-            <button onClick={() => eliminarHabito(habito.id)}>❌</button>
-          </li>
-        ))}
-      </ul>
+          <Dashboard /> {/* 👈 aquí se muestra el nuevo panel */}
+        </div>
+      )}
     </div>
   );
-
-  
 }
-
 
 export default App;

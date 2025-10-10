@@ -8,17 +8,19 @@ function Login() {
 
   const manejarInicio = () => {
     if (usuario.trim() !== "") {
+      // Guardamos el usuario en localStorage
       localStorage.setItem("usuario", usuario);
+      // Navegamos al Dashboard
       navigate("/dashboard");
     } else {
-      alert("Por favor, ingresa tu nombre 🧡");
+      alert("Por favor, ingresa tu nombre ❤️");
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1>😊 Bienvenido</h1>
+        <h1>👋 Bienvenido</h1>
         <p>Ingresa tu nombre para empezar a gestionar tus hábitos ✨</p>
 
         <input
