@@ -23,7 +23,7 @@ function Dashboard({ nombre, cerrarSesion }) {
         <section className="stats">
           <h2>📊 Tu Progreso</h2>
           <p>Total de Hábitos: {total}</p>
-          <p>Completados: {completados}</p>
+          <p>Completados está semana: {completados}</p>
           <p>Progreso: {progreso}%</p>
         </section>
 
